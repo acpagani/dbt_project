@@ -1,0 +1,25 @@
+models:
+  - name: payments
+    description: "Standarized, normalized and renamed payments data from source"
+    columns:
+      - name: payment_id
+        description: "Unique identifier for a payment"
+        data_tests:
+          - not_null
+          - unique
+      - name: order_id
+        data_tests:
+          - relationships:
+              to: ref('orders')
+              field: order_id
+      - name: payment_method
+        data_tests:
+          - accepted_values:
+              values: ['credit_card', 'bank_transfer', 'coupon', 'gift_card']
+      - name: payments_status
+        data_tests:
+          - accepted_values:
+              values: ['success', 'fail']
+      - name: amount
+      - name: created_at
+      - name: _batched_at

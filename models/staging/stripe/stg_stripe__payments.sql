@@ -8,9 +8,9 @@ WITH
             id AS payment_id
             ,orderid AS order_id
             ,paymentmethod AS payment_method
-            ,status
-            ,amount / 100 AS amount
-            ,created
+            ,status AS payments_status
+            ,CAST(amount AS NUMERIC) / 100 AS amount
+            ,created AS created_at
             ,_batched_at
         FROM source
     )
