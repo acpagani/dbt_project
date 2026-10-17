@@ -11,10 +11,10 @@ sources:
           loaded_at_field: "_etl_loaded_at"
           freshness: 
             warn_after: 
-              count: 10
-              period: day
+              count: 12
+              period: hour
             error_after: 
-              count: 10
+              count: 1
               period: day
             
             
