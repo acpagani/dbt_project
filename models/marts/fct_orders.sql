@@ -23,7 +23,7 @@ SELECT
     ,t1.customer_id
     ,t1.order_date
     ,t1.order_status
-    ,SUM(t2.amount) AS amount
+    ,SUM(COALESCE(t2.amount, 0)) AS amount
 FROM orders AS t1
-JOIN payments AS t2 ON t1.order_id = t2.order_id
+LEFT JOIN payments AS t2 ON t1.order_id = t2.order_id
 GROUP BY 1,2,3,4

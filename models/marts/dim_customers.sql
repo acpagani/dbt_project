@@ -17,12 +17,12 @@ WITH
         FROM {{ ref('fct_orders') }}
     )
 
-SELECT DISTINCT
+SELECT
     t1.customer_id
     ,t1.first_name
     ,t1.last_name
-    ,COALESCE(MIN(t2.order_date), '0001-01-01') AS first_order_date
-    ,COALESCE(MAX(t2.order_date), '0001-01-01') AS most_recent_order_date
+    ,MIN(t2.order_date) AS first_order_date
+    ,MAX(t2.order_date) AS most_recent_order_date
     ,COUNT(t2.order_id) AS number_of_orders
     ,COALESCE(SUM(t2.amount), 0) AS lifetime_value
 FROM customers AS t1

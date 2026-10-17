@@ -21,9 +21,16 @@ models:
         data_tests:
           - not_null
           - unique
+          - relationships:
+              to: ref('fct_orders')
+              field: customer_id
       - name: first_name
       - name: last_name
       - name: first_order_date
+        description: "First order ever done by a customer"
       - name: most_recent_order_date
+        description: "Last order done by a customer"
       - name: number_of_orders
+        description: "Total number of orders for each customer"
       - name: lifetime_value
+        description: "Customer's total amount already bought, considering just successful payments"
