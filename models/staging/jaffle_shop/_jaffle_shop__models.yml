@@ -1,5 +1,5 @@
 models:
-  - name: customers
+  - name: stg_jaffle_shop__customers
     description: "Standarized and renamed customers data from source"
     columns:
       - name: customer_id
@@ -12,7 +12,7 @@ models:
       - name: last_name
         description: "Customer's Last Name"
 
-  - name: orders
+  - name: stg_jaffle_shop__orders
     description: "Standarized and renamed orders data from source"
     columns:
       - name: order_id
@@ -24,14 +24,16 @@ models:
         description: "Unique identifier for a customer"
         data_tests:
           - relationships:
-              to: ref('customers')
-              field: customer_id
+              arguments:
+                to: ref('stg_jaffle_shop__customers')
+                field: customer_id
       - name: order_date
         description: "Order's date"
       - name: order_status
         description: "Order's Status"
         data_tests:
           - accepted_values:
-              values: ['placed', 'shipped', 'returned', 'completed', 'return_pending']
+              arguments:
+                values: ['placed', 'shipped', 'returned', 'completed', 'return_pending']
       - name: _etl_loaded_at
         description: "Load Time"
